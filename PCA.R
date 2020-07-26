@@ -1,6 +1,20 @@
 library(reshape2)
 #library(tidyverse)
+setwd("E:/Research_AJL/PCA_exercise_code/")
 
+abalone <- read.csv("abalone.csv")
+
+abalone_m.pca <- prcomp(abalone[abalone$Sex=="M",-1], center = TRUE,scale. = TRUE)
+biplot(abalone_m.pca)
+
+abalone_f.pca <- prcomp(abalone[abalone$Sex=="F",-1], center = TRUE,scale. = TRUE)
+biplot(abalone_f.pca)
+
+abalone_i.pca <- prcomp(abalone[abalone$Sex=="I",-1], center = TRUE,scale. = TRUE)
+biplot(abalone_i.pca)
+
+abalone.pca <- prcomp(abalone[abalone$Sex=="M" | abalone[abalone$Sex=="F", abalone$Sex=="F",-1], center = TRUE,scale. = TRUE)
+biplot(abalone.pca)
 
 whale.pca <- prcomp(whale[,-1], center = TRUE,scale. = TRUE)
 
