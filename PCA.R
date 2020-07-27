@@ -1,8 +1,49 @@
 library(reshape2)
 #library(tidyverse)
+setwd("Documents/PCA_exercise_code/")
 setwd("E:/Research_AJL/PCA_exercise_code/")
 
+x <- rep(1:10)
+y <- rep(1,10)
+
+plot(x,y)
+
+mean(x)
+x-mean(x)
+(x-mean(x))^2
+sum((x-mean(x))^2)
+sum((x-mean(x))^2) * 1/(length(x)-1)
+
+cov(x,x)
+var(x)
+
+var(y)
+
+cov(x,y)
+
+z <- x+2
+
+plot(x,z)
+
+var(x)
+var(z)
+
+cov(x,z)
+
+
+
+T0 <- prcomp(cbind(x,x),center = TRUE)
+T1 <- prcomp(cbind(x,z),center = TRUE)
+
+biplot(T0)
+biplot(T1)
+
 abalone <- read.csv("abalone.csv")
+
+abalone.pca <- prcomp(abalone[,-1], center = TRUE,scale. = TRUE)
+biplot(abalone.pca)
+
+
 
 abalone_m.pca <- prcomp(abalone[abalone$Sex=="M",-1], center = TRUE,scale. = TRUE)
 biplot(abalone_m.pca)
@@ -13,8 +54,7 @@ biplot(abalone_f.pca)
 abalone_i.pca <- prcomp(abalone[abalone$Sex=="I",-1], center = TRUE,scale. = TRUE)
 biplot(abalone_i.pca)
 
-abalone.pca <- prcomp(abalone[abalone$Sex=="M" | abalone[abalone$Sex=="F", abalone$Sex=="F",-1], center = TRUE,scale. = TRUE)
-biplot(abalone.pca)
+
 
 whale.pca <- prcomp(whale[,-1], center = TRUE,scale. = TRUE)
 
